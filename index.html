@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PharmAssist - Smart Pharmacy Management</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <button class="hamburger" onclick="toggleSidebar()">☰</button>
+    <!-- Login Page -->
+    <div id="loginPage" class="login-container">
+      <div class="login-card">
+        <img src="log.PNG" alt="PharmAssist Logo" class="login-logo" />
+        <p style="color: #666; margin-bottom: 30px">
+          AI-Powered Pharmacy Management
+        </p>
+
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              value="demo@pharmassist.com"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value="demo123"
+              required
+            />
+          </div>
+
+          <button type="submit" class="login-btn">Sign In</button>
+        </form>
+
+        <p style="margin-top: 20px; color: #666; font-size: 14px">
+          Demo credentials: demo@pharmassist.com / demo123
+        </p>
+      </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="dashboard" style="display: none">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="sidebar-header">
+          <div class="sidebar-logo">
+            <img src="log.PNG" alt="PharmAssist Logo" class="login-logo" />
+          </div>
+        </div>
+
+        <ul class="sidebar-menu">
+          <li>
+            <a href="#" class="menu-item active" data-section="overview">
+              <div class="icon">📊</div>
+              <span>Overview</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="menu-item" data-section="patients">
+              <div class="icon">👥</div>
+              <span>Patients</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="menu-item" data-section="consultations">
+              <div class="icon">🎙️</div>
+              <span>AI Consultations</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="menu-item" data-section="medications">
+              <div class="icon">💊</div>
+              <span>Medication Tracker</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="menu-item" data-section="reminders">
+              <div class="icon">🔔</div>
+              <span>Smart Reminders</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="menu-item" data-section="insights">
+              <div class="icon">📈</div>
+              <span>AI Insights</span>
+            </a>
+          </li>
+          <!-- <li>
+            <a href="#" class="menu-item" data-section="records">
+              <div class="icon">📋</div>
+              <span>Medical Records</span>
+            </a>
+          </li> -->
+          <li>
+            <a href="#" class="menu-item" data-section="settings">
+              <div class="icon">⚙️</div>
+              <span>Settings</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <div class="content-header">
+          <h1 class="content-title" id="pageTitle">Overview</h1>
+          <div class="user-info">
+            <span>Welcome, Dr. Johnson</span>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+          </div>
+        </div>
+
+        <!-- Overview Section -->
+        <div id="overview" class="content-section active">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-number">1,630</div>
+              <div class="stat-label">Total Patients</div>
+              <div class="stat-change positive">+8.5% from last 7 days</div>
+            </div>
+            <div class="stat-card green">
+              <div class="stat-number">1,293</div>
+              <div class="stat-label">Consultations Completed</div>
+              <div class="stat-change positive">+12.3% from last 7 days</div>
+            </div>
+            <div class="stat-card orange">
+              <div class="stat-number">$75,000</div>
+              <div class="stat-label">Revenue Generated</div>
+              <div class="stat-change positive">+5.2% from last 7 days</div>
+            </div>
+            <div class="stat-card purple">
+              <div class="stat-number">4.8 / 5.0</div>
+              <div class="stat-label">Patient Satisfaction</div>
+              <div class="stat-change positive">+0.3 from last 7 days</div>
+            </div>
+          </div>
+
+          <div class="patients-section">
+            <div class="section-header">
+              <h2 class="section-title">Recent Appointments</h2>
+              <div class="filter-tabs">
+                <div
+                  class="filter-tab active"
+                  onclick="filterAppointments('all')"
+                >
+                  All
+                </div>
+                <div
+                  class="filter-tab"
+                  onclick="filterAppointments('completed')"
+                >
+                  Completed
+                </div>
+                <div
+                  class="filter-tab"
+                  onclick="filterAppointments('confirmed')"
+                >
+                  Confirmed
+                </div>
+                <div
+                  class="filter-tab"
+                  onclick="filterAppointments('unconfirmed')"
+                >
+                  Unconfirmed
+                </div>
+              </div>
+            </div>
+
+            <table class="patients-table">
+              <thead>
+                <tr>
+                  <th>Patient</th>
+                  <th>Time</th>
+                  <th>Contact</th>
+                  <th>Status</th>
+                  <th>Doctor</th>
+                  <th>Service</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="appointmentsTable">
+                <tr onclick="loadPatientProfile('CA')">
+                  <td>
+                    <div class="patient-info">
+                      <div class="patient-avatar">CA</div>
+                      <div class="patient-details">
+                        <div class="patient-name">Chiamaka Adebayo</div>
+                        <div class="patient-age">45 years</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div>8:00 AM</div>
+                    <div style="font-size: 12px; color: #666">60 min</div>
+                  </td>
+                  <td>(702) 555-0122</td>
+                  <td>
+                    <span class="status-badge status-completed">Completed</span>
+                  </td>
+                  <td>Dr. Emily Johnson</td>
+                  <td>Dermatology Consultation</td>
+                  <td><button class="action-btn">⋯</button></td>
+                </tr>
+                <tr onclick="loadPatientProfile('OO')">
+                  <td>
+                    <div class="patient-info">
+                      <div class="patient-avatar">OO</div>
+                      <div class="patient-details">
+                        <div class="patient-name">Obinna Okafor</div>
+                        <div class="patient-age">34 years</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div>9:00 AM</div>
+                    <div style="font-size: 12px; color: #666">45 min</div>
+                  </td>
+                  <td>(702) 555-0100</td>
+                  <td>
+                    <span class="status-badge status-confirmed">Confirmed</span>
+                  </td>
+                  <td>Dr. Sarah Lee</td>
+                  <td>Routine Check-up</td>
+                  <td><button class="action-btn">⋯</button></td>
+                </tr>
+                <tr onclick="loadPatientProfile('NE')">
+                  <td>
+                    <div class="patient-info">
+                      <div class="patient-avatar">NE</div>
+                      <div class="patient-details">
+                        <div class="patient-name">Ngozi Eze</div>
+                        <div class="patient-age">42 years</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div>9:30 AM</div>
+                    <div style="font-size: 12px; color: #666">30 min</div>
+                  </td>
+                  <td>(702) 555-0118</td>
+                  <td>
+                    <span class="status-badge status-confirmed">Confirmed</span>
+                  </td>
+                  <td>Dr. Emily Johnson</td>
+                  <td>Dermatology Consultation</td>
+                  <td><button class="action-btn">⋯</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Patients Section -->
+        <div id="patients" class="content-section">
+          <div class="patients-section">
+            <div class="section-header">
+              <h2 class="section-title">Patient Directory</h2>
+              <button
+                class="login-btn"
+                style="padding: 10px 20px; font-size: 14px"
+                onclick="showAddPatientModal()"
+              >
+                Add New Patient
+              </button>
+            </div>
+
+            <div style="margin-bottom: 20px">
+              <input
+                type="text"
+                id="patientSearch"
+                placeholder="Search patients..."
+                style="
+                  padding: 10px;
+                  border: 1px solid #ddd;
+                  border-radius: 5px;
+                  width: 300px;
+                "
+                oninput="searchPatients()"
+              />
+            </div>
+
+            <div class="stats-grid">
+              <div class="stat-card">
+                <div class="stat-number">1,630</div>
+                <div class="stat-label">Total Patients</div>
+              </div>
+              <div class="stat-card green">
+                <div class="stat-number">89</div>
+                <div class="stat-label">New This Month</div>
+              </div>
+              <div class="stat-card orange">
+                <div class="stat-number">234</div>
+                <div class="stat-label">Active Prescriptions</div>
+              </div>
+              <div class="stat-card purple">
+                <div class="stat-number">92%</div>
+                <div class="stat-label">Adherence Rate</div>
+              </div>
+            </div>
+
+            <div class="patients-table-container">
+              <table class="patients-table">
+                <thead>
+                  <tr>
+                    <th>Patient</th>
+                    <th>Age</th>
+                    <th>Last Visit</th>
+                    <th>Conditions</th>
+                    <th>Medications</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="patientsTable">
+                  <!-- Patient rows will be populated by JavaScript -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Patient Profile Section (Hidden by default) -->
+        <div id="patientProfile" class="content-section">
+          <div class="patients-section">
+            <button
+              class="back-btn"
+              onclick="switchSection('patients')"
+              style="
+                background: #2196f3;
+                color: white;
+                border: none;
+                padding: 8px 16px;
+                border-radius: 5px;
+                margin-bottom: 20px;
+                cursor: pointer;
+              "
+            >
+              ← Back to Patients
+            </button>
+
+            <div class="patient-profile-header">
+              <div class="patient-avatar-large" id="profileAvatar">RC</div>
+              <div>
+                <h1 class="patient-name-large" id="profileName">
+                  Rosie Cooper
+                </h1>
+                <div class="patient-details-large">
+                  <span id="profileAge">45 years</span> •
+                  <span id="profileGender">Female</span> •
+                  <span id="profileContact">(702) 555-0122</span>
+                </div>
+                <div class="patient-actions">
+                  <button
+                    class="login-btn"
+                    style="padding: 10px 20px; font-size: 14px"
+                    onclick="startConsultation()"
+                  >
+                    Start Consultation
+                  </button>
+                  <button
+                    class="login-btn"
+                    style="
+                      padding: 10px 20px;
+                      font-size: 14px;
+                      background: #9c27b0;
+                    "
+                    onclick="sendReminder()"
+                  >
+                    Send Reminder
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="patient-profile-grid">
+              <div class="patient-profile-card">
+                <h3>Health Information</h3>
+                <div class="health-info-grid">
+                  <div>
+                    <label>Blood Type</label>
+                    <p id="bloodType">A+</p>
+                  </div>
+                  <div>
+                    <label>Height</label>
+                    <p id="height">165 cm</p>
+                  </div>
+                  <div>
+                    <label>Weight</label>
+                    <p id="weight">68 kg</p>
+                  </div>
+                  <div>
+                    <label>Allergies</label>
+                    <p id="allergies">Penicillin, Sulfa drugs</p>
+                  </div>
+                  <div>
+                    <label>Chronic Conditions</label>
+                    <p id="conditions">Hypertension, Type 2 Diabetes</p>
+                  </div>
+                  <div>
+                    <label>Last BP Reading</label>
+                    <p id="bloodPressure">132/82 mmHg</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="patient-profile-card">
+                <h3>Current Medications</h3>
+                <div class="medication-list" id="currentMedications">
+                  <!-- Medications will be populated by JavaScript -->
+                </div>
+                <button
+                  class="add-medication-btn"
+                  onclick="showAddMedicationModal()"
+                >
+                  + Add Medication
+                </button>
+              </div>
+
+              <div class="patient-profile-card full-width">
+                <h3>Recent Consultations</h3>
+                <div class="consultation-list" id="consultationHistory">
+                  <!-- Consultations will be populated by JavaScript -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Consultations Section -->
+        <div id="consultations" class="content-section">
+          <div class="consultation-form">
+            <h2 class="section-title">AI-Powered Consultation Notes</h2>
+            <p style="color: #666; margin-bottom: 20px">
+              Use voice recording to automatically generate structured
+              consultation notes
+            </p>
+
+            <div class="voice-recorder">
+              <button class="record-btn" onclick="toggleRecording()">
+                🎙️ Start Recording
+              </button>
+              <div class="transcript-area" id="transcript">
+                Click "Start Recording" to begin voice transcription. The AI
+                will automatically structure your consultation notes.
+              </div>
+            </div>
+
+            <div style="margin-top: 20px">
+              <h3>Generated Notes Preview:</h3>
+              <div
+                style="
+                  background: #f8f9fa;
+                  padding: 15px;
+                  border-radius: 8px;
+                  margin-top: 10px;
+                "
+              >
+                <p><strong>Patient:</strong> John Smith</p>
+                <p><strong>Date:</strong> June 11, 2025</p>
+                <p>
+                  <strong>Chief Complaint:</strong> Persistent headaches for 3
+                  days
+                </p>
+                <p>
+                  <strong>Assessment:</strong> Tension headache likely due to
+                  stress
+                </p>
+                <p>
+                  <strong>Recommendations:</strong> OTC pain relief, stress
+                  management techniques
+                </p>
+                <p>
+                  <strong>Follow-up:</strong> Return if symptoms persist beyond
+                  1 week
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="patients-section" style="margin-top: 30px">
+            <h2 class="section-title">Consultation History</h2>
+            <div class="consultation-history-table">
+              <table class="patients-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Patient</th>
+                    <th>Duration</th>
+                    <th>Summary</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="consultationTable">
+                  <tr>
+                    <td>June 15, 2025</td>
+                    <td>Rosie Cooper</td>
+                    <td>25 min</td>
+                    <td>Follow-up for hypertension management</td>
+                    <td>
+                      <button class="action-btn" onclick="viewConsultation(1)">
+                        View
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>June 14, 2025</td>
+                    <td>Albert Flores</td>
+                    <td>15 min</td>
+                    <td>New prescription for seasonal allergies</td>
+                    <td>
+                      <button class="action-btn" onclick="viewConsultation(2)">
+                        View
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>June 12, 2025</td>
+                    <td>Leslie Alexander</td>
+                    <td>30 min</td>
+                    <td>Diabetes medication review and adjustment</td>
+                    <td>
+                      <button class="action-btn" onclick="viewConsultation(3)">
+                        View
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Medication Tracker Section -->
+        <div id="medications" class="content-section">
+          <div class="patients-section">
+            <div class="section-header">
+              <h2 class="section-title">Medication Tracker</h2>
+              <button
+                class="login-btn"
+                style="padding: 10px 20px; font-size: 14px"
+              >
+                Add Prescription
+              </button>
+            </div>
+
+            <div class="medication-grid">
+              <div class="medication-card">
+                <div class="medication-header">
+                  <div>
+                    <div class="medication-name">Lisinopril</div>
+                    <div class="medication-dosage">10mg daily</div>
+                  </div>
+                  <div class="adherence-score">95%</div>
+                </div>
+                <div class="medication-schedule">
+                  <div class="schedule-item">
+                    <span class="schedule-time">8:00 AM</span>
+                    <span class="schedule-status taken">Taken</span>
+                  </div>
+                  <div class="schedule-item">
+                    <span class="schedule-time">Tomorrow 8:00 AM</span>
+                    <span class="schedule-status pending">Pending</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="medication-card due">
+                <div class="medication-header">
+                  <div>
+                    <div class="medication-name">Metformin</div>
+                    <div class="medication-dosage">500mg twice daily</div>
+                  </div>
+                  <div class="adherence-score" style="background: #ff9800">
+                    82%
+                  </div>
+                </div>
+                <div class="medication-schedule">
+                  <div class="schedule-item">
+                    <span class="schedule-time">8:00 AM</span>
+                    <span class="schedule-status taken">Taken</span>
+                  </div>
+                  <div class="schedule-item">
+                    <span class="schedule-time">6:00 PM</span>
+                    <span class="schedule-status pending">Due Now</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="medication-card overdue">
+                <div class="medication-header">
+                  <div>
+                    <div class="medication-name">Atorvastatin</div>
+                    <div class="medication-dosage">20mg daily</div>
+                  </div>
+                  <div class="adherence-score" style="background: #f44336">
+                    68%
+                  </div>
+                </div>
+                <div class="medication-schedule">
+                  <div class="schedule-item">
+                    <span class="schedule-time">Yesterday 8:00 PM</span>
+                    <span class="schedule-status missed">Missed</span>
+                  </div>
+                  <div class="schedule-item">
+                    <span class="schedule-time">Today 8:00 PM</span>
+                    <span class="schedule-status pending">Overdue</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Smart Reminders Section -->
+        <div id="reminders" class="content-section">
+          <div class="patients-section">
+            <h2 class="section-title">Smart Reminders</h2>
+            <p style="color: #666; margin-bottom: 20px">
+              AI-powered medication reminders sent via SMS and app notifications
+            </p>
+
+            <div class="stats-grid">
+              <div class="stat-card">
+                <div class="stat-number">342</div>
+                <div class="stat-label">Reminders Sent Today</div>
+              </div>
+              <div class="stat-card green">
+                <div class="stat-number">89%</div>
+                <div class="stat-label">Response Rate</div>
+              </div>
+              <div class="stat-card orange">
+                <div class="stat-number">23</div>
+                <div class="stat-label">Missed Doses</div>
+              </div>
+              <div class="stat-card purple">
+                <div class="stat-number">156</div>
+                <div class="stat-label">Active Patients</div>
+              </div>
+            </div>
+
+            <div
+              style="
+                background: white;
+                padding: 20px;
+                border-radius: 10px;
+                margin-top: 20px;
+              "
+            >
+              <h3>Recent Reminder Activity</h3>
+              <div style="margin-top: 15px">
+                <div
+                  style="
+                    padding: 10px;
+                    border-left: 3px solid #4caf50;
+                    margin-bottom: 10px;
+                    background: #f8f9fa;
+                  "
+                >
+                  <strong>John Smith</strong> - Metformin reminder sent at 8:00
+                  AM ✅ Confirmed taken
+                </div>
+                <div
+                  style="
+                    padding: 10px;
+                    border-left: 3px solid #ff9800;
+                    margin-bottom: 10px;
+                    background: #f8f9fa;
+                  "
+                >
+                  <strong>Sarah Johnson</strong> - Lisinopril reminder sent at
+                  9:00 AM ⏳ Pending response
+                </div>
+                <div
+                  style="
+                    padding: 10px;
+                    border-left: 3px solid #f44336;
+                    margin-bottom: 10px;
+                    background: #f8f9fa;
+                  "
+                >
+                  <strong>Mike Davis</strong> - Atorvastatin reminder sent at
+                  7:00 PM ❌ No response (Overdue)
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Insights Section -->
+        <div id="insights" class="content-section">
+          <div class="patients-section">
+            <h2 class="section-title">AI-Generated Insights</h2>
+            <p style="color: #666; margin-bottom: 20px">
+              Intelligent analysis of patient data and medication patterns
+            </p>
+
+            <div class="stats-grid">
+              <div class="stat-card">
+                <div class="stat-number">12</div>
+                <div class="stat-label">Potential Drug Interactions</div>
+              </div>
+              <div class="stat-card orange">
+                <div class="stat-number">8</div>
+                <div class="stat-label">Adherence Alerts</div>
+              </div>
+              <div class="stat-card purple">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Follow-up Recommendations</div>
+              </div>
+              <div class="stat-card green">
+                <div class="stat-number">94%</div>
+                <div class="stat-label">AI Accuracy Rate</div>
+              </div>
+            </div>
+
+            <div
+              style="
+                background: white;
+                padding: 20px;
+                border-radius: 10px;
+                margin-top: 20px;
+              "
+            >
+              <h3>AI Recommendations</h3>
+              <div style="margin-top: 15px">
+                <div
+                  style="
+                    padding: 15px;
+                    border: 1px solid #e0e0e0;
+                    border-radius: 8px;
+                    margin-bottom: 15px;
+                  "
+                >
+                  <h4 style="color: #f44336">⚠️ High Priority Alert</h4>
+                  <p>
+                    Patient Maria Garcia shows declining adherence to diabetes
+                    medication (62% this week vs 89% last month). Consider
+                    intervention.
+                  </p>
+                  <button
+                    style="
+                      background: #2196f3;
+                      color: white;
+                      border: none;
+                      padding: 8px 16px;
+                      border-radius: 5px;
+                      margin-top: 10px;
+                    "
+                  >
+                    Schedule Follow-up
+                  </button>
+                </div>
+                <div
+                  style="
+                    padding: 15px;
+                    border: 1px solid #e0e0e0;
+                    border-radius: 8px;
+                    margin-bottom: 15px;
+                  "
+                >
+                  <h4 style="color: #ff9800">📊 Pattern Analysis</h4>
+                  <p>
+                    Patients taking morning medications show 23% better
+                    adherence than evening schedules. Consider timing
+                    adjustments.
+                  </p>
+                  <button
+                    style="
+                      background: #4caf50;
+                      color: white;
+                      border: none;
+                      padding: 8px 16px;
+                      border-radius: 5px;
+                      margin-top: 10px;
+                    "
+                  >
+                    View Details
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Medical Records Section -->
+        <!-- <div id="records" class="content-section">
+          <div class="patients-section">
+            <h2 class="section-title">Digital Medical Records</h2>
+            <p style="color: #666; margin-bottom: 20px">
+              Secure, organized patient records with AI-generated summaries
+            </p>
+
+            <div style="margin-bottom: 20px">
+              <input
+                type="text"
+                placeholder="Search records..."
+                style="
+                  padding: 10px;
+                  border: 1px solid #ddd;
+                  border-radius: 5px;
+                  width: 300px;
+                  margin-right: 10px;
+                "
+              />
+              <button
+                class="login-btn"
+                style="padding: 10px 20px; font-size: 14px"
+              >
+                Search
+              </button>
+            </div>
+
+            <div style="background: white; padding: 20px; border-radius: 10px">
+              <table class="patients-table">
+                <thead>
+                  <tr>
+                    <th>Patient</th>
+                    <th>Last Visit</th>
+                    <th>Condition</th>
+                    <th>Medications</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="patient-info">
+                        <div class="patient-avatar">JS</div>
+                        <div class="patient-details">
+                          <div class="patient-name">John Smith</div>
+                          <div class="patient-age">52 years</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>June 8, 2025</td>
+                    <td>Hypertension, Diabetes</td>
+                    <td>Lisinopril, Metformin</td>
+                    <td>
+                      <span class="status-badge status-completed">Active</span>
+                    </td>
+                    <td><button class="action-btn">View Record</button></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="patient-info">
+                        <div class="patient-avatar">MG</div>
+                        <div class="patient-details">
+                          <div class="patient-name">Maria Garcia</div>
+                          <div class="patient-age">48 years</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>June 5, 2025</td>
+                    <td>Type 2 Diabetes</td>
+                    <td>Metformin, Insulin</td>
+                    <td>
+                      <span class="status-badge status-unconfirmed"
+                        >Follow-up Due</span
+                      >
+                    </td>
+                    <td><button class="action-btn">View Record</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div> -->
+
+        <!-- Settings Section -->
+        <div id="settings" class="content-section">
+          <div class="patients-section">
+            <h2 class="section-title">Settings</h2>
+            <p style="color: #666; margin-bottom: 20px">
+              Configure your PharmAssist system preferences
+            </p>
+
+            <div
+              style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 20px;
+              "
+            >
+              <div
+                style="background: white; padding: 20px; border-radius: 10px"
+              >
+                <h3>AI Configuration</h3>
+                <div style="margin: 15px 0">
+                  <label style="display: block; margin-bottom: 5px"
+                    >Voice Recognition Language</label
+                  >
+                  <select
+                    style="
+                      width: 100%;
+                      padding: 8px;
+                      border: 1px solid #ddd;
+                      border-radius: 5px;
+                    "
+                  >
+                    <option>English (US)</option>
+                    <option>English (UK)</option>
+                    <option>Spanish</option>
+                    <option>French</option>
+                  </select>
+                </div>
+                <div style="margin: 15px 0">
+                  <label>
+                    <input type="checkbox" checked /> Enable automatic note
+                    generation
+                  </label>
+                </div>
+                <div style="margin: 15px 0">
+                  <label>
+                    <input type="checkbox" checked /> Real-time transcription
+                  </label>
+                </div>
+              </div>
+
+              <div
+                style="background: white; padding: 20px; border-radius: 10px"
+              >
+                <h3>Notification Settings</h3>
+                <div style="margin: 15px 0">
+                  <label>
+                    <input type="checkbox" checked /> SMS reminders
+                  </label>
+                </div>
+                <div style="margin: 15px 0">
+                  <label>
+                    <input type="checkbox" checked /> Email notifications
+                  </label>
+                </div>
+                <div style="margin: 15px 0">
+                  <label> <input type="checkbox" /> Push notifications </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Consultation Modal -->
+    <div id="consultationModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('consultationModal')"
+          >&times;</span
+        >
+        <h2>Consultation Notes</h2>
+        <div class="consultation-details">
+          <div class="consultation-header">
+            <div>
+              <p><strong>Patient:</strong> <span id="consultPatient"></span></p>
+              <p><strong>Date:</strong> <span id="consultDate"></span></p>
+            </div>
+            <div>
+              <p>
+                <strong>Duration:</strong> <span id="consultDuration"></span>
+              </p>
+              <p>
+                <strong>Pharmacist:</strong>
+                <span id="consultPharmacist"></span>
+              </p>
+            </div>
+          </div>
+          <div class="consultation-body">
+            <h3>AI-Generated Notes</h3>
+            <div id="consultNotes" class="consultation-notes">
+              <!-- Notes will be populated here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Patient Modal -->
+    <div id="addPatientModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('addPatientModal')"
+          >&times;</span
+        >
+        <h2>Add New Patient</h2>
+        <form id="patientForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="newFirstName">First Name</label>
+              <input type="text" id="newFirstName" required />
+            </div>
+            <div class="form-group">
+              <label for="newLastName">Last Name</label>
+              <input type="text" id="newLastName" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="newDob">Date of Birth</label>
+              <input type="date" id="newDob" required />
+            </div>
+            <div class="form-group">
+              <label for="newGender">Gender</label>
+              <select id="newGender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="newPhone">Phone Number</label>
+            <input type="tel" id="newPhone" required />
+          </div>
+          <div class="form-group">
+            <label for="newEmail">Email</label>
+            <input type="email" id="newEmail" />
+          </div>
+          <button type="submit" class="login-btn">Save Patient</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Add Medication Modal -->
+    <div id="addMedicationModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal('addMedicationModal')"
+          >&times;</span
+        >
+        <h2>Add Medication</h2>
+        <form id="medicationForm">
+          <div class="form-group">
+            <label for="medName">Medication Name</label>
+            <input type="text" id="medName" required />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="medDosage">Dosage</label>
+              <input
+                type="text"
+                id="medDosage"
+                placeholder="e.g., 10mg"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="medFrequency">Frequency</label>
+              <select id="medFrequency" required>
+                <option value="Once daily">Once daily</option>
+                <option value="Twice daily">Twice daily</option>
+                <option value="Three times daily">Three times daily</option>
+                <option value="As needed">As needed</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="medInstructions">Special Instructions</label>
+            <textarea id="medInstructions" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="medStartDate">Start Date</label>
+            <input type="date" id="medStartDate" required />
+          </div>
+          <button type="submit" class="login-btn">Add Medication</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
