@@ -10,7 +10,7 @@ body {
   min-height: 100vh;
   color: #212529;
   margin: 0;
-  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Login Page Styles */
@@ -98,7 +98,7 @@ body {
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  touch-action: manipulation; /* Prevent double-tap zoom */
+  touch-action: manipulation;
 }
 
 .login-btn:hover {
@@ -213,7 +213,7 @@ body {
   flex: 1;
   background: #f5f5f5;
   padding: 15px;
-  margin-top: 50px; /* Space for hamburger menu */
+  margin-top: 50px;
   overflow-y: auto;
 }
 
@@ -347,24 +347,32 @@ body {
   border-color: #2196f3;
 }
 
+.patients-table-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 .patients-table {
   width: 100%;
+  min-width: 600px; /* Ensures table content doesn't collapse too much */
   border-collapse: collapse;
   font-size: 12px;
 }
 
 .patients-table th {
   background: #f8f9fa;
-  padding: 10px;
+  padding: 10px 8px;
   text-align: left;
   font-weight: 600;
   color: #333;
   border-bottom: 1px solid #e0e0e0;
+  white-space: nowrap;
 }
 
 .patients-table td {
-  padding: 10px;
+  padding: 10px 8px;
   border-bottom: 1px solid #e0e0e0;
+  white-space: nowrap;
 }
 
 .patient-info {
@@ -807,11 +815,6 @@ body {
   margin-bottom: 10px;
 }
 
-.form-row .form-group {
-  flex: 1;
-  margin-bottom: 0;
-}
-
 /* Responsive Design */
 @media (min-width: 769px) {
   .dashboard {
@@ -867,6 +870,7 @@ body {
 
   .patients-table {
     font-size: 14px;
+    min-width: auto; /* Allow table to fit content on larger screens */
   }
 
   .patient-name {
@@ -881,6 +885,15 @@ body {
     width: 36px;
     height: 36px;
     font-size: 14px;
+  }
+
+  .patients-table-container {
+    overflow-x: visible;
+  }
+
+  .patients-table th,
+  .patients-table td {
+    padding: 10px;
   }
 }
 

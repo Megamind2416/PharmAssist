@@ -116,7 +116,9 @@
           <h1 class="content-title" id="pageTitle">Overview</h1>
           <div class="user-info">
             <span>Welcome, Dr. Johnson</span>
-            <button class="logout-btn" onclick="logout()">Logout</button>
+            <button class="logout-btn" onclick="logout()" disabled>
+              Logout
+            </button>
           </div>
         </div>
 
@@ -175,88 +177,95 @@
                 </div>
               </div>
             </div>
-
-            <table class="patients-table">
-              <thead>
-                <tr>
-                  <th>Patient</th>
-                  <th>Time</th>
-                  <th>Contact</th>
-                  <th>Status</th>
-                  <th>Doctor</th>
-                  <th>Service</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody id="appointmentsTable">
-                <tr onclick="loadPatientProfile('CA')">
-                  <td>
-                    <div class="patient-info">
-                      <div class="patient-avatar">CA</div>
-                      <div class="patient-details">
-                        <div class="patient-name">Chiamaka Adebayo</div>
-                        <div class="patient-age">45 years</div>
+            <div class="patients-table-container">
+              <table class="patients-table">
+                <thead>
+                  <tr>
+                    <th>Patient</th>
+                    <th>Time</th>
+                    <th>Contact</th>
+                    <th>Status</th>
+                    <th>Doctor</th>
+                    <th>Service</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="appointmentsTable">
+                  <tr onclick="loadPatientProfile('CA')">
+                    <td>
+                      <div class="patient-info">
+                        <div class="patient-avatar">CA</div>
+                        <div class="patient-details">
+                          <div class="patient-name">Chiamaka Adebayo</div>
+                          <div class="patient-age">45 years</div>
+                        </div>
                       </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div>8:00 AM</div>
-                    <div style="font-size: 12px; color: #666">60 min</div>
-                  </td>
-                  <td>(702) 555-0122</td>
-                  <td>
-                    <span class="status-badge status-completed">Completed</span>
-                  </td>
-                  <td>Dr. Emily Johnson</td>
-                  <td>Dermatology Consultation</td>
-                  <td><button class="action-btn">⋯</button></td>
-                </tr>
-                <tr onclick="loadPatientProfile('OO')">
-                  <td>
-                    <div class="patient-info">
-                      <div class="patient-avatar">OO</div>
-                      <div class="patient-details">
-                        <div class="patient-name">Obinna Okafor</div>
-                        <div class="patient-age">34 years</div>
+                    </td>
+                    <td>
+                      <div>8:00 AM</div>
+                      <div style="font-size: 12px; color: #666">60 min</div>
+                    </td>
+                    <td>(702) 555-0122</td>
+                    <td>
+                      <span class="status-badge status-completed"
+                        >Completed</span
+                      >
+                    </td>
+                    <td>Dr. Emily Johnson</td>
+                    <td>Dermatology Consultation</td>
+                    <td><button class="action-btn">⋯</button></td>
+                  </tr>
+                  <tr onclick="loadPatientProfile('OO')">
+                    <td>
+                      <div class="patient-info">
+                        <div class="patient-avatar">OO</div>
+                        <div class="patient-details">
+                          <div class="patient-name">Obinna Okafor</div>
+                          <div class="patient-age">34 years</div>
+                        </div>
                       </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div>9:00 AM</div>
-                    <div style="font-size: 12px; color: #666">45 min</div>
-                  </td>
-                  <td>(702) 555-0100</td>
-                  <td>
-                    <span class="status-badge status-confirmed">Confirmed</span>
-                  </td>
-                  <td>Dr. Sarah Lee</td>
-                  <td>Routine Check-up</td>
-                  <td><button class="action-btn">⋯</button></td>
-                </tr>
-                <tr onclick="loadPatientProfile('NE')">
-                  <td>
-                    <div class="patient-info">
-                      <div class="patient-avatar">NE</div>
-                      <div class="patient-details">
-                        <div class="patient-name">Ngozi Eze</div>
-                        <div class="patient-age">42 years</div>
+                    </td>
+                    <td>
+                      <div>9:00 AM</div>
+                      <div style="font-size: 12px; color: #666">45 min</div>
+                    </td>
+                    <td>(702) 555-0100</td>
+                    <td>
+                      <span class="status-badge status-confirmed"
+                        >Confirmed</span
+                      >
+                    </td>
+                    <td>Dr. Sarah Lee</td>
+                    <td>Routine Check-up</td>
+                    <td><button class="action-btn">⋯</button></td>
+                  </tr>
+                  <tr onclick="loadPatientProfile('NE')">
+                    <td>
+                      <div class="patient-info">
+                        <div class="patient-avatar">NE</div>
+                        <div class="patient-details">
+                          <div class="patient-name">Ngozi Eze</div>
+                          <div class="patient-age">42 years</div>
+                        </div>
                       </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div>9:30 AM</div>
-                    <div style="font-size: 12px; color: #666">30 min</div>
-                  </td>
-                  <td>(702) 555-0118</td>
-                  <td>
-                    <span class="status-badge status-confirmed">Confirmed</span>
-                  </td>
-                  <td>Dr. Emily Johnson</td>
-                  <td>Dermatology Consultation</td>
-                  <td><button class="action-btn">⋯</button></td>
-                </tr>
-              </tbody>
-            </table>
+                    </td>
+                    <td>
+                      <div>9:30 AM</div>
+                      <div style="font-size: 12px; color: #666">30 min</div>
+                    </td>
+                    <td>(702) 555-0118</td>
+                    <td>
+                      <span class="status-badge status-confirmed"
+                        >Confirmed</span
+                      >
+                    </td>
+                    <td>Dr. Emily Johnson</td>
+                    <td>Dermatology Consultation</td>
+                    <td><button class="action-btn">⋯</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
 
